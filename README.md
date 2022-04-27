@@ -25,7 +25,7 @@ This is the best I could do:
 
 1. Use the _link_ from the github classroom to create your private clone of the starter code.
 
-2. Do `git clone https://github.com/ucsd-cse131/ucsd-cse131-sp21-04-diamondback-XYZ` where `XYZ` is your username.
+2. Do `git clone https://github.com/ucsd-cse131/ucsd-cse131-sp22-04-diamondback-XYZ` where `XYZ` is your username.
 
 3. Link your clone to the "upstream" to get any updates
 
@@ -399,25 +399,15 @@ Copy over any error-detection functions here
 ```
 
 
-
 ## Tests (5-for-5)
 
-* You can test the well-formedness errors using the
+* You can test the well-formedness errors using the 
   error tester as usual.
 
 * You **must** add 10 new tests in `yourTests` in order 
   to get **base credit**. Feel free to add more, we'll 
   just take the first 10.
 
-* The creators of the **5 hardest tests** get **5%** 
-  of total points as **extra credit**
-
-* A test's "score" is the total number of compilers
-  submitted by the entire class on which the test
-  produces the **wrong** output.
-
-* That is, the **harder** a test, the **higher** its 
-  score.
 
 ## Interactive REPL 
 
