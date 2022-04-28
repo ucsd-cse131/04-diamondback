@@ -5,6 +5,7 @@ COMPILER=diamondback
 EXT=diamond
 BUILD_OPTS=--ghc-options -O0 
 RUNTIME=c-bits
+HEAP=100000
 ######################################################
 REPL=stack repl --allow-different-user
 CLEAN=stack clean --allow-different-user
@@ -30,6 +31,9 @@ endif
 endif
 endif
 
+CFLAGS=-g -m64 -mstackrealign -fsanitize=address
+CLANG=clang $(WINSTUFF) $(CFLAGS)
+
 .PHONY: clean
 
 test: clean
@@ -39,7 +43,7 @@ bin:
 	$(BUILD)
 
 clean:
-	rm -rf tests/output/*.o tests/output/*.s tests/output/*.dSYM tests/output/*.run tests/output/*.log tests/output/*.result tests/output/*.$(COMPILER) tests/output/*.result
+	rm -rf $(RUNTIME)/*.o tests/output/*.o tests/output/*.s tests/output/*.dSYM tests/output/*.run tests/output/*.log tests/output/*.result tests/output/*.$(COMPILER) tests/output/*.result
 
 distclean: clean
 	$(CLEAN)
@@ -62,6 +66,10 @@ update:
 
 tests/output/%.result: tests/output/%.run
 	$< > $@
+
+tests/output/%.vresult: tests/output/%.run
+	@valgrind $< $(HEAP) > $@
+
 
 tests/output/%.run: tests/output/%.o $(RUNTIME)/main.c
 	clang $(WINSTUFF) -g -m64 -o $@ $(RUNTIME)/main.c $<
